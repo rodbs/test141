@@ -11,6 +11,8 @@ import {
   PopoverProps,
   Label,
   Input,
+  SizeTokens,
+  Switch,
 } from '@my/ui'
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from '@tamagui/feather-icons'
 import React, { useState } from 'react'
@@ -53,6 +55,15 @@ export function HomeScreen() {
         <Demo placement="bottom" Icon={ChevronDown} />
         <Demo placement="top" Icon={ChevronUp} />
         <Demo placement="right" Icon={ChevronRight} />
+      </XStack>
+      <YStack w={300} ai="center" space="$3">
+        <SwitchWithLabel size="$2" />
+        <SwitchWithLabel size="$3" />
+        <SwitchWithLabel size="$4" />
+        <SwitchWithLabel size="$5" />
+      </YStack>
+      <XStack>
+        <Button icon={ChevronDown} size="$6" p="$-0" />
       </XStack>
     </YStack>
   )
@@ -130,5 +141,20 @@ export function Demo({ Icon, ...props }: PopoverProps & { Icon?: any }) {
         </XStack>
       </Popover.Content>
     </Popover>
+  )
+}
+
+function SwitchWithLabel(props: { size }) {
+  const id = `switch-${props.size.toString().slice(1)}`
+  return (
+    <XStack w={300} ai="center" space="$4">
+      <Label pr="$0" miw={200} jc="flex-end" size={props.size} htmlFor={id}>
+        Dark mode
+      </Label>
+      <Separator mih={20} vertical />
+      <Switch id={id} size={props.size}>
+        <Switch.Thumb animation="quick" />
+      </Switch>
+    </XStack>
   )
 }
